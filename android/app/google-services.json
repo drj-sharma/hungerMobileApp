@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1088264685141",
+    "firebase_url": "https://hunger-a690c.firebaseio.com",
+    "project_id": "hunger-a690c",
+    "storage_bucket": "hunger-a690c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1088264685141:android:adbc78e56aaa20569336dc",
+        "android_client_info": {
+          "package_name": "hunger.com.hunger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1088264685141-fbsucou7kfekv5lrc9ddtgpeljfj4843.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTCFH9D491DIeF0FouFZMIZCL7V-usPkU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1088264685141-fbsucou7kfekv5lrc9ddtgpeljfj4843.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
