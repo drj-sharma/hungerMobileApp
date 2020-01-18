@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hunger/models/user.dart';
+import 'package:hunger/services/databases.dart';
 
 class Authservice {
 
@@ -45,6 +46,8 @@ class Authservice {
     try {
       AuthResult result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
       FirebaseUser user = result.user;
+      print(user.uid);
+      await DatabaseService(uid: user.uid).updateUserData('medium', 'Dheeraj', 'extra cheese');
       return _userFromFirebaseUser(user);
     } catch(e) {
       print('error: ');
