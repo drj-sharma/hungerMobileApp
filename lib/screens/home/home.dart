@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hunger/screens/home/setting_form.dart';
 import 'package:hunger/services/auth.dart';
 import 'package:hunger/services/databases.dart';
 import 'package:provider/provider.dart';
@@ -17,13 +18,12 @@ class _HomeState extends State<Home> {
 
   void _showBottomPanel() {
     showModalBottomSheet(context: context, backgroundColor: Colors.purple[400], shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(10),
+      borderRadius: BorderRadius.only(topLeft: Radius.circular(15.0),
+      topRight: Radius.circular(15.0)),
     ), builder: (context) {
       return Container(
         padding: EdgeInsets.all(20.0),
-        child: Text('Pizza Khao', style:
-          TextStyle(color: Colors.white,
-          fontSize: 20.0,),),
+        child: SettingForm(),
       );
     });
   }

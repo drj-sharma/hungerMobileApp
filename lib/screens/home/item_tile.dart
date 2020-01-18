@@ -17,6 +17,7 @@ class ItemTile extends StatelessWidget {
             backgroundColor: Colors.white10,
             backgroundImage: AssetImage('assets/pizza.png'),
           ),
+          trailing: Icon(Icons.fastfood),
           title: Text(item.name),
           subtitle: Text('Take ${item.pizzaSize} pizza'),
         ),
