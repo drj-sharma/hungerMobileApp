@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
+import 'package:hunger/models/objectModel.dart';
+import 'package:hunger/screens/home/item_tile.dart';
 
 class HungerList extends StatefulWidget {
   @override
@@ -10,11 +12,18 @@ class HungerList extends StatefulWidget {
 class _HungerListState extends State<HungerList> {
   @override
   Widget build(BuildContext context) {
-    final hungers = Provider.of<QuerySnapshot>(context);
+    final hungers = Provider.of<List<ItemObject>>(context);
     // print(hungers.documents);
-    for (var doc in hungers.documents) {
-      print(doc.data);
-    }
-    return Container();
+    hungers.forEach((hungers) {
+      print(hungers.name);
+      print(hungers.pizzaSize);
+      print(hungers.somethingElse);
+    });
+    return ListView.builder(
+      itemCount: hungers.length,
+      itemBuilder: (context, index) {
+        return ItemTile(item: hungers[index]);
+      },
+    );
   }
 }

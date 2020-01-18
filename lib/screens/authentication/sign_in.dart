@@ -49,9 +49,9 @@ class _SignInState extends State<SignIn> {
                 children: <Widget>[
                   SizedBox(height: 20.0,),
                   TextFormField(
-                    inputFormatters: [
-                      WhitelistingTextInputFormatter(RegExp('[a-zA-Z0-9]')), // do email address regex function
-                    ],
+                    // inputFormatters: [
+                     // WhitelistingTextInputFormatter(RegExp('[a-zA-Z0-9]')), // do email address regex function
+                   // ],
                     validator: (val) => val.isEmpty ? 'Enter a valid email' : null,
                     cursorColor: Colors.deepPurple,
                       decoration: textInputDecoration.copyWith(hintText: 'Email'),

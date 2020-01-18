@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:hunger/models/objectModel.dart';
 
 class DatabaseService {
   final String uid;
@@ -17,8 +18,19 @@ class DatabaseService {
       }
     );
   }
+
+  // firebase object conversion to our data-model object conversion
+  List<ItemObject> itemObjectFromSnapshot (QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) => ItemObject(
+      name: doc.data['name'] ?? '',
+      pizzaSize: doc.data['pizzaSize'] ?? '',
+      somethingElse: doc.data['somethingelse'] ?? ''
+    )).toList();
+  }
+
   // get hungers stream
-  Stream<QuerySnapshot> get hungers {
-    return hungerCollection.snapshots();
+  Stream<List<ItemObject>> get hungers {
+    return hungerCollection.snapshots()
+    .map(itemObjectFromSnapshot);
   }
 }
