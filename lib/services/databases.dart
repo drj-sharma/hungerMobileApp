@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hunger/models/objectModel.dart';
+import 'package:hunger/models/user.dart';
 
 class DatabaseService {
   final String uid;
@@ -25,13 +26,23 @@ class DatabaseService {
         .toList();
   }
 
+  // userData from snapshot
+  UserData getUserData(DocumentSnapshot data) {
+    return UserData(
+      uid: uid,
+      name: data.data['name'],
+      pizzaSize: data.data['pizzaSize'],
+      pizzaToppings: data.data['pizzaToppings'],
+    );
+  }
   // get hungers stream
   Stream<List<ItemObject>> get hungers {
     return hungerCollection.snapshots().map(itemObjectFromSnapshot);
   }
 
   // get user data
-  Stream<DocumentSnapshot> get userData {
-    return hungerCollection.document(uid).snapshots();
+  Stream<UserData> get userData {
+    return hungerCollection.document(uid).snapshots()
+    .map(getUserData);
   }
 }
