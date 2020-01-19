@@ -17,7 +17,7 @@ class _HomeState extends State<Home> {
   final Authservice _auth = Authservice();
 
   void _showBottomPanel() {
-    showModalBottomSheet(context: context, backgroundColor: Colors.purple[400], shape: RoundedRectangleBorder(
+    showModalBottomSheet(context: context, backgroundColor: Colors.white, shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.only(topLeft: Radius.circular(15.0),
       topRight: Radius.circular(15.0)),
     ), builder: (context) {
@@ -71,6 +71,7 @@ class _HomeState extends State<Home> {
           brightness: Brightness.light,
           title: Text('hungers\'',
             style: TextStyle(
+              letterSpacing: 3.0,
               color: Colors.blueGrey,
               fontWeight: FontWeight.bold
             ),
