@@ -14,71 +14,73 @@ class _SettingFormState extends State<SettingForm> {
   String _currentName;
   String _currentPizzaSize;
   List<String> _currentSomethingElse = [];
-  List<String> _pizzaToppings = [
-    'extra cheese',
-    'pepperoni',
-    'Black olives',
-    'Green pepers'
-  ];
+  Map<String, bool> _pizzaToppings = {
+    'Extra cheese': false,
+    'Pepperoni': false,
+    'Black olives': false,
+    'Green pepers': false
+  };
   bool _isChecked = true;
+  List checking = [false, false, false, false];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+        backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.pink,
           automaticallyImplyLeading: false,
-        title: const Text(
-          'Update Pizza Setting',
-          style: TextStyle(fontSize: 18.0,),
-        ),
+          title: const Text(
+            'Update Pizza Setting',
+            style: TextStyle(fontSize: 18.0,),
+          ),
           centerTitle: true,
-    ),
-    body: Form(
-      key: _formkey,
-      child: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            SizedBox(
-              height: 10.0,
-            ),
-            TextFormField(
-              decoration: textInputDecoration.copyWith(hintText: 'Enter name'),
-              validator: (val) => val.isEmpty ? 'Please Enter a name' : null,
-              onChanged: (val) => setState(() => this._currentName = val),
-            ),
-            // dropdown
-            DropdownButtonFormField(
-              decoration: textInputDecoration,
-              value: _currentPizzaSize ?? 'small',
-              items: this.pizzaSizes.map<DropdownMenuItem<String>>((String item) {
-                return DropdownMenuItem<String>(
-                  value: item,
-                  child: Text('$item size'),
-                );
-              }).toList(),
-              onChanged: (val) => setState(() => _currentPizzaSize = val),
-            ),
-            Column(
-              children: _pizzaToppings
-                  .map(
-                    (t) => CheckboxListTile(
-                      title: Text(t),
-                      value: _isChecked,
-                      onChanged: (val) {
-                        setState(() {
-                          _isChecked = val;
-                          print(_currentSomethingElse);
-                          if (val == true) {
-                            _currentSomethingElse.add(t);
+        ),
+        body:  SingleChildScrollView(
+            child: Form(
+            key: _formkey,
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 10.0,
+                ),
+                TextFormField(
+                  decoration: textInputDecoration.copyWith(hintText: 'Enter name'),
+                  validator: (val) => val.isEmpty ? 'Please Enter a name' : null,
+                  onChanged: (val) => setState(() => this._currentName = val),
+                ),
+                // dropdown
+                DropdownButtonFormField(
+                  decoration: textInputDecoration,
+                  value: _currentPizzaSize ?? 'small',
+                  items: this.pizzaSizes.map<DropdownMenuItem<String>>((String item) {
+                    return DropdownMenuItem<String>(
+                      value: item,
+                      child: Text('$item size'),
+                    );
+                  }).toList(),
+                  onChanged: (val) => setState(() => _currentPizzaSize = val),
+                ),
+                  ListView(
+                    shrinkWrap: true,
+                    children: _pizzaToppings.keys.map((String key) {
+                      return SwitchListTile(
+                        title: Text(key),
+                        value: _pizzaToppings[key],
+                        onChanged: (bool value) {
+                          setState(() {
                             print(_currentSomethingElse);
-                          }
-                        });
-                      },
-                    ),
-                  )
-                  .toList(),
-            ),
+                            _pizzaToppings[key] = value;
+                            if(value) {
+                              print(key);
+                              _currentSomethingElse.add(key);
+                              print(_currentSomethingElse);
+                            } else{
+                              _currentSomethingElse.remove(key);
+                            }});
+                        },
+                      );
+                    }).toList(),
+                  ),
 //          Slider(
 //            value: 5.0,
 //            min: 1.0,
@@ -88,29 +90,29 @@ class _SettingFormState extends State<SettingForm> {
 //            inactiveColor: Colors.deepPurpleAccent,
 //            divisions: 9,
 //          ),
-            SizedBox(
-              height: 10.0,
-            ),
-            FlatButton.icon(
-              color: Colors.deepPurpleAccent,
-              onPressed: () async {
-                print(this._currentName);
-                print(this._currentPizzaSize);
-              },
-              shape:
+                SizedBox(
+                  height: 10.0,
+                ),
+                FlatButton.icon(
+                  color: Colors.deepPurpleAccent,
+                  onPressed: () async {
+                    print(this._currentName);
+                    print(this._currentPizzaSize);
+                  },
+                  shape:
                   RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-              icon: Icon(
-                Icons.update,
-                color: Colors.white,
-              ),
-              label: Text(
-                'Update',
-                style: TextStyle(color: Colors.white),
-              ),
-            )
-          ],
-        ),
-      ),
-    ));
+                  icon: Icon(
+                    Icons.update,
+                    color: Colors.white,
+                  ),
+                  label: Text(
+                    'Update',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ));
   }
 }

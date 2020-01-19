@@ -17,12 +17,12 @@ class _HomeState extends State<Home> {
   final Authservice _auth = Authservice();
 
   void _showBottomPanel() {
-    showModalBottomSheet(context: context, backgroundColor: Colors.white, shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.only(topLeft: Radius.circular(15.0),
-      topRight: Radius.circular(15.0)),
+    showModalBottomSheet(context: context, backgroundColor: Colors.white, elevation: 0.0, isScrollControlled: true, shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.only(topLeft: Radius.circular(45.0),
+      topRight: Radius.circular(45.0)),
     ), builder: (context) {
       return Container(
-        padding: EdgeInsets.all(20.0),
+        padding: EdgeInsets.fromLTRB(20.0, 40.0, 20.0, 20.0),
         child: SettingForm(),
       );
     });
